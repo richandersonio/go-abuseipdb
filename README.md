@@ -15,7 +15,7 @@ export ABUSEIPDB_API_KEY=YOUR_API_KEY
 
 ### Simple example
 
-You can the example code as follows:
+You can run the example code as follows:
 
 ```bash
 cd examples
@@ -23,7 +23,7 @@ go get github.com/richandersonio/go-abuseipdb/abuseipdb
 go run example.go 
 ```
 
-This example provides console output for a known dodgy IP address:
+This example calls the API and outputs the basic information about the iP address 144.91.79.5 to the console:
 
 ```bash
 IPAddress: 144.91.79.5
