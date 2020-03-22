@@ -7,7 +7,7 @@ It can be used for checking bad actors / bad IPs
 
 ### seting up the api key
 
-The example code and tests depend on an API key. Once you've registered and got this from the abuseipdb.com website  you have an environment variable the code uses:
+The example code and tests depend on an API key. Once you've registered for an account at abuseipdb.com website, you have to setup an environment variable the code uses:
 
 ```bash
 export ABUSEIPDB_API_KEY=YOUR_API_KEY
@@ -41,8 +41,6 @@ LastReportedAt: 2020-03-22 00:30:08 +0000 +0000
 ```
 
 ## Running tests
-
-The tests depends on an API key.  You have to set this as an environment variable before running the tests:
 
 ```bash
 export ABUSEIPDB_API_KEY=YOUR_API_KEY
