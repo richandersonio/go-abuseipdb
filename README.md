@@ -7,7 +7,9 @@ It can be used for checking bad actors / bad IPs
 
 ```go
 export ABUSEIPDB_API_KEY=YOUR_API_KEY
-go test -v
+cd example
+go get github.com/richandersonio/go-abuseipdb/abuseipdb
+go run example.go 
 ```
 
 ## Running tests

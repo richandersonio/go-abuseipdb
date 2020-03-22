@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	_ "github.com/richandersonio/go-abuseipdb/abuseipdb"
+	"github.com/richandersonio/go-abuseipdb/abuseipdb"
 )
 
 func main() {
 
 	apikey := os.Getenv("ABUSEIPDB_API_KEY")
-	resp, err := go-abuseipdb.CheckIP(apikey, "144.91.79.5")
+	resp, err := abuseipdb.CheckIP(apikey, "144.91.79.5")
 	if err == nil {
 
 		fmt.Println("error checking ip: ", err)
