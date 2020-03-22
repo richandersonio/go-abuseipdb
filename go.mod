@@ -1,3 +1,3 @@
-module github.com/richandersonio/abuseipdb
+module github.com/richandersonio/go-abuseipdb
 
 go 1.14
