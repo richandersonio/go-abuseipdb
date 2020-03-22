@@ -1,13 +1,17 @@
-Example go code for using the AbuseIPDB API to check if an IP address has been reported for malicious behavior
-website:  https://www.abuseipdb.com
+# Welcoe
 
-# Running tests
+This package is a small wrapper for some of the APIs provided by AbuseIPDB API (https://www.abuseipdb.com)
+It can be used for checking bad actors / bad IPs
+
+## Running tests
 
 The tests depend on an API key.  You have to set this as an environment variable before running the tests:
 
+```bash
 export ABUSEIPDB_API_KEY=YOUR_API_KEY
-go test
+go test -v
+```
 
-# TODO:
+## TODO:
 
 Create basic go docs - see https://github.com/googleapis/google-cloud-go/blob/master/datastore/doc.go
