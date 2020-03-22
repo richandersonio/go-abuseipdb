@@ -7,11 +7,8 @@ import (
 
 func main() {
 
-	var err error
-	var ipEntry abuseipdb.ipEntry
-
 	apikey = os.Getenv("ABUSEIPDB_API_KEY")
-	resp, err = CheckIP(apikey, "144.91.79.5")
+	resp, err := CheckIP(apikey, "144.91.79.5")
 	if err == nil {
 
 		fmt.Println("error checking ip: ", err)
