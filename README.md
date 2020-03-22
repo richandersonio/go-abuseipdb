@@ -1,7 +1,14 @@
-# Welcoe
+# Welcome
 
 This package is a small wrapper for some of the APIs provided by AbuseIPDB API (https://www.abuseipdb.com)
 It can be used for checking bad actors / bad IPs
+
+## Example code
+
+```go
+export ABUSEIPDB_API_KEY=YOUR_API_KEY
+go test -v
+```
 
 ## Running tests
 
