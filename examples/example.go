@@ -13,7 +13,6 @@ func check(ip string) {
 	apikey := os.Getenv("ABUSEIPDB_API_KEY")
 	resp, err := abuseipdb.CheckIP(apikey, ip)
 	if err != nil {
-
 		fmt.Println("error checking ip: ", err)
 		return
 	}
@@ -33,7 +32,6 @@ func check(ip string) {
 }
 
 func main() {
-
 	fmt.Println("Checking IP Address...")
 	check("144.91.79.5")
 
@@ -49,5 +47,4 @@ func main() {
 		fmt.Println("Checking IP Address...")
 		check(ans)
 	}
-
 }
