@@ -3,32 +3,24 @@ package abuseipdb
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"math/rand"
 	"os"
-	"strconv"
 	"testing"
-	"time"
 )
 
-var apikey string
-
 func TestCheckIPNoIPAddressErrors(t *testing.T) {
-	// general an error by passing no IP address
-	apikey = os.Getenv("ABUSEIPDB_API_KEY")
+	// generate an error by passing no key and IP address
 	_, err := CheckIP("", "")
 	if err == nil {
 		t.Fatal("CheckIP should have returned an error")
 	}
 }
 
-func TestCheckIPValid(t *testing.T) {
+func TestKnownBadIP(t *testing.T) {
 	// check a bad IP address with a known confidence score of 100
-	apikey = os.Getenv("ABUSEIPDB_API_KEY")
+	apikey := os.Getenv("ABUSEIPDB_API_KEY")
 	resp, err := CheckIP(apikey, "144.91.79.5")
-	if err == nil {
-
-		fmt.Println("error checking ip: ", err)
+	if err != nil {
+		t.Fatalf("error checking ip: %s ", err)
 	}
 
 	fmt.Println("IPAddress:", resp.IPAddress)
@@ -46,16 +38,20 @@ func TestCheckIPValid(t *testing.T) {
 }
 
 func TestBlackList(t *testing.T) {
-	return
 	// check a bad IP address with a known confidence score of 100
-	apikey = os.Getenv("ABUSEIPDB_API_KEY")
+	apikey := os.Getenv("ABUSEIPDB_API_KEY")
+	if apikey == "" {
+		t.Fatal("ABUSEIPDB_API_KEY not set")
+	}
 
-	list, err := Blacklist(apikey, 99, 100000)
+	list, err := Blacklist(apikey, 99, 1000)
 	if err != nil {
 		t.Fatalf("error checking ip: %s", err)
 	}
 
-	fmt.Printf(strconv.Itoa(len(list)))
+	if len(list) != 1000 {
+		t.Fatalf("Did not return 1000 entries as expected")
+	}
 
 	f, err := os.Create("blacklist.txt")
 	if err != nil {
@@ -65,44 +61,5 @@ func TestBlackList(t *testing.T) {
 
 	b, _ := json.Marshal(list)
 	f.Write(b)
-}
-
-func TestReadBlacklistFile(t *testing.T) {
-	// read file
-	data, err := ioutil.ReadFile("blacklist10000.txt")
-	if err != nil {
-		fmt.Print(err)
-		return
-	}
-
-	var blacklistEntries []Entry
-	err = json.Unmarshal(data, &blacklistEntries)
-	if err != nil {
-		fmt.Println("error:", err)
-		return
-	}
-
-	fmt.Println("entries in the blacklist slice -> " + strconv.Itoa(len(blacklistEntries)))
-
-	for _, blacklistEntry := range blacklistEntries {
-		//		fmt.Println(i, blacklistEntry.IPAddress)
-		if blacklistEntry.IPAddress == "196.43.155.209" {
-			fmt.Printf("IP found in blacklist")
-		}
-	}
-	// change the seed based on the time
-	rand.Seed(time.Now().UTC().UnixNano())
-	for i := 0; i < 10; i++ {
-		ip := blacklistEntries[rand.Intn(len(blacklistEntries))].IPAddress
-		//		ip = "144.91.79.5"
-		fmt.Println("Random entry:", ip)
-		resp, err := CheckIP(apikey, ip)
-		if err != nil {
-			fmt.Println("error checking ip: ", err)
-			return
-		}
-		if resp.AbuseConfidenceScore != 100 {
-			t.Fatalf(("confidence level not 100 for blackisted ip: %s"), ip)
-		}
-	}
+	return
 }
