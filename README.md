@@ -1,7 +1,10 @@
 # Welcome
 
-This package is a small wrapper for some of the APIs provided by AbuseIPDB API (https://www.abuseipdb.com)
-It can be used for checking bad actors / bad IPs
+This package is a small wrapper for some of the APIs provided by AbuseIPDB API (https://www.abuseipdb.com).
+
+It can be used to if an IP address is known to be engaging in hacking attempts or other malicious behavior.
+
+I use it on my site (https://richanderson.io) where I check every inbound request.  If a bad IP is detected I send back a fake page.
 
 ## Example code
 
