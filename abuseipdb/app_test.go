@@ -1,7 +1,6 @@
 package abuseipdb
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"testing"
@@ -53,13 +52,5 @@ func TestBlackList(t *testing.T) {
 		t.Fatalf("Did not return 1000 entries as expected")
 	}
 
-	f, err := os.Create("blacklist.txt")
-	if err != nil {
-		return
-	}
-	defer f.Close()
-
-	b, _ := json.Marshal(list)
-	f.Write(b)
 	return
 }
