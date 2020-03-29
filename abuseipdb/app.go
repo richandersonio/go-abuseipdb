@@ -11,19 +11,7 @@ import (
 	"time"
 )
 
-/* Structs for this response format:
-   	jStr2 := `
-       {
-           "data":{
-   			"totalReports": ["1111"],
-   			"abuseConfidenceScore": ["2222"],
-   			"ipAddress": "333"
-   		}
-       }
-   	`
-*/
-
-// AbuseipdbEntry struct details the data known about an IP address
+// Entry struct details the data known about an IP address
 type Entry struct {
 	TotalReports         int       `json:"totalReports,omitempty"`
 	AbuseConfidenceScore int       `json:"abuseConfidenceScore,omitempty"`
@@ -50,7 +38,6 @@ type abuseipdbBlacklistReponse struct {
 func crunchResponse(jStr string) (response Entry) {
 	var cont abuseipdbReponse
 	json.Unmarshal([]byte(jStr), &cont)
-	//fmt.Printf("%+v\n", cont)
 	return cont.Data
 }
 
@@ -96,9 +83,6 @@ func Blacklist(apikey string, confidenceMinimum int, limit int) (response []Entr
 	var cont abuseipdbBlacklistReponse
 	json.Unmarshal([]byte(page), &cont)
 	fmt.Println(len(cont.Data))
-	//fmt.Printf("%+v\n", cont)
-
-	//fmt.Println(string(page))
 	return cont.Data, nil
 }
 
@@ -136,7 +120,6 @@ func CheckIP(apikey string, ipAddress string) (response Entry, returnError error
 		return emptyEntry, err
 	}
 
-	//fmt.Println(string(page))
 	var ipEntry Entry
 	ipEntry = crunchResponse(string(page))
 	return ipEntry, nil
