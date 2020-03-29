@@ -3,7 +3,6 @@ package abuseipdb
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -69,7 +68,6 @@ func Blacklist(apikey string, confidenceMinimum int, limit int) (response []Entr
 
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("error calling api: ", err)
 		return nil, err
 	}
 
@@ -82,7 +80,6 @@ func Blacklist(apikey string, confidenceMinimum int, limit int) (response []Entr
 
 	var cont abuseipdbBlacklistReponse
 	json.Unmarshal([]byte(page), &cont)
-	fmt.Println(len(cont.Data))
 	return cont.Data, nil
 }
 
@@ -109,7 +106,6 @@ func CheckIP(apikey string, ipAddress string) (response Entry, returnError error
 
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("error calling api: ", err)
 		return emptyEntry, err
 	}
 
