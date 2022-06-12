@@ -1,4 +1,4 @@
-# Welcome = 1.0.0
+# Welcome = v2
 
 This package is a small wrapper for some of the APIs provided by AbuseIPDB API (https://www.abuseipdb.com).
 
