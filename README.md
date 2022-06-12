@@ -9,15 +9,15 @@ I use it on my site (https://richanderson.io) where I check every inbound reques
 
 ## Prerequisites
 
-### seting up the api key
+The package and examples require an API key from https://www.abuseipdb.com.  Go to their site to register and create one.
 
-The package and examples require an API key from https://www.abuseipdb.com.  Go to there site to get this.
-
-One you have your API key you have to setup the environment variable "ABUSEIPDB_API_KEY":
+One you have your API key setup the environment variable "ABUSEIPDB_API_KEY":
 
 ```bash
 export ABUSEIPDB_API_KEY=YOUR_API_KEY
 ```
+
+## Examples
 
 ###  Check IP Example
 
