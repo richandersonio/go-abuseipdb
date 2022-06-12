@@ -17,7 +17,7 @@ func TestCheckIPNoIPAddressErrors(t *testing.T) {
 func TestKnownBadIP(t *testing.T) {
 	// check a bad IP address with a known confidence score of 100
 	apikey := os.Getenv("ABUSEIPDB_API_KEY")
-	resp, err := CheckIP(apikey, "144.91.79.5")
+	resp, err := CheckIP(apikey, "209.141.57.178")
 	if err != nil {
 		t.Fatalf("error checking ip: %s ", err)
 	}

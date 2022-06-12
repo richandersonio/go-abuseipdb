@@ -33,7 +33,7 @@ func check(ip string) {
 
 func main() {
 	fmt.Println("Checking IP Address...")
-	check("144.91.79.5")
+	check("209.141.57.178")
 
 	for {
 		fmt.Println()

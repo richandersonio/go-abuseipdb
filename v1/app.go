@@ -80,6 +80,7 @@ func Blacklist(apikey string, confidenceMinimum int, limit int) (response []Entr
 
 	var cont abuseipdbBlacklistReponse
 	json.Unmarshal([]byte(page), &cont)
+
 	return cont.Data, nil
 }
 

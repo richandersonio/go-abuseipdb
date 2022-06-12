@@ -16,17 +16,9 @@ The example code and tests depend on an API key. Once you've registered for an a
 export ABUSEIPDB_API_KEY=YOUR_API_KEY
 ```
 
-### Simple example
+###  Examples - Check Ip
 
-You can run the example code as follows:
-
-```bash
-cd examples
-go get github.com/richandersonio/go-abuseipdb/abuseipdb
-go run example.go 
-```
-
-This example calls the API and outputs the basic information about the iP address 144.91.79.5 to the console:
+This example calls the API and outputs basic information about the iP addresses entered to the console:
 
 ```bash
 IPAddress: 144.91.79.5
@@ -41,6 +33,13 @@ UsageType: Data Center/Web Hosting/Transit
 ISP: Contabo GmbH
 Domain: contabo.de
 LastReportedAt: 2020-03-22 00:30:08 +0000 +0000
+```
+
+Run it as follows:
+
+```bash
+cd examples/gocheck
+go run .
 ```
 
 ## Running tests

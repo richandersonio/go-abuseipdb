@@ -9,7 +9,12 @@ import (
 
 func main() {
 	apikey := os.Getenv("ABUSEIPDB_API_KEY")
-	err := abuseipdb.Blacklist(apikey, 99)
+
+	// apikey string, confidenceMinimum int, limit int
+	var response []Entry
+	var err error
+
+	err, response = abuseipdb.Blacklist(apikey, 99, 100)
 	if err != nil {
 		fmt.Println("error checking ip: ", err)
 		return
