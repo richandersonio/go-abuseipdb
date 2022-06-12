@@ -47,7 +47,7 @@ go run .
 
 ####  Code example
 
-'''go
+```bash
 	apikey := os.Getenv("ABUSEIPDB_API_KEY")
 	resp, err := abuseipdb.CheckIP(apikey, ip)
 	if err != nil {
