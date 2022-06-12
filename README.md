@@ -61,7 +61,7 @@ if err != nil {
     return
 }
 
-// display it in the console
+// display results in the console
 
 fmt.Println("IPAddress:", resp.IPAddress)
 fmt.Println("TotalReports:", resp.TotalReports)
@@ -75,7 +75,7 @@ fmt.Println("UsageType:", resp.UsageType)
 fmt.Println("ISP:", resp.ISP)
 fmt.Println("Domain:", resp.Domain)
 fmt.Println("LastReportedAt:", resp.LastReportedAt)
-'''
+```
 
 # History
 
