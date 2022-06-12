@@ -81,8 +81,7 @@ fmt.Println("LastReportedAt:", resp.LastReportedAt)
 
 ## V2 created - 6/12/22
 
-Changes:
-
-Updated to 1.18
-Fix bug in one of the examples
-Module now uses github.com/richandersonio/go-abuseipdb/v2
+* Updated to Go 1.18
+* Fix bug in one of the examples
+* Module now uses github.com/richandersonio/go-abuseipdb/v2
+* Add code example of calling the package to the docs
