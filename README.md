@@ -1,4 +1,4 @@
-# Welcome
+# Welcome = 1.0.0
 
 This package is a small wrapper for some of the APIs provided by AbuseIPDB API (https://www.abuseipdb.com).
 
@@ -52,3 +52,11 @@ go test -v
 ## TODO:
 
 Create basic go docs - see https://github.com/googleapis/google-cloud-go/blob/master/datastore/doc.go
+
+
+# History
+
+## 06/12/22
+
+Go 1.18
+Changed to github.com/richandersonio/go-abuseipdb/v1
