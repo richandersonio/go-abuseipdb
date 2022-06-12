@@ -48,26 +48,33 @@ go run .
 ####  Code example
 
 ```bash
-	apikey := os.Getenv("ABUSEIPDB_API_KEY")
-	resp, err := abuseipdb.CheckIP(apikey, ip)
-	if err != nil {
-		fmt.Println("error checking ip: ", err)
-		return
-	}
+// grab the api key from the environment variable setup above
+apikey := os.Getenv("ABUSEIPDB_API_KEY")
 
-	fmt.Println("IPAddress:", resp.IPAddress)
-	fmt.Println("TotalReports:", resp.TotalReports)
-	fmt.Println("NumberDistinctUsers:", resp.NumberDistinctUsers)
-	fmt.Println("AbuseConfidenceScore:", resp.AbuseConfidenceScore)
-	fmt.Println("IsPublic:", resp.IsPublic)
-	fmt.Println("IPVersion:", resp.IPVersion)
-	fmt.Println("IsWhiteListed:", resp.IsWhiteListed)
-	fmt.Println("CountryCode:", resp.CountryCode)
-	fmt.Println("UsageType:", resp.UsageType)
-	fmt.Println("ISP:", resp.ISP)
-	fmt.Println("Domain:", resp.Domain)
-	fmt.Println("LastReportedAt:", resp.LastReportedAt)
+// go get the information about an IP address 
+
+var ip string
+
+resp, err := abuseipdb.CheckIP(apikey, ip)
+if err != nil {
+    fmt.Println("error checking ip: ", err)
+    return
 }
+
+// display it in the console
+
+fmt.Println("IPAddress:", resp.IPAddress)
+fmt.Println("TotalReports:", resp.TotalReports)
+fmt.Println("NumberDistinctUsers:", resp.NumberDistinctUsers)
+fmt.Println("AbuseConfidenceScore:", resp.AbuseConfidenceScore)
+fmt.Println("IsPublic:", resp.IsPublic)
+fmt.Println("IPVersion:", resp.IPVersion)
+fmt.Println("IsWhiteListed:", resp.IsWhiteListed)
+fmt.Println("CountryCode:", resp.CountryCode)
+fmt.Println("UsageType:", resp.UsageType)
+fmt.Println("ISP:", resp.ISP)
+fmt.Println("Domain:", resp.Domain)
+fmt.Println("LastReportedAt:", resp.LastReportedAt)
 '''
 
 # History
