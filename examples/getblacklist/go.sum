@@ -1,2 +1,2 @@
-github.com/richandersonio/go-abuseipdb v0.0.0-20200330031257-224c1fe2557c h1:+73e8SfZ45H/rvDLrJPRJIZKI/VYXGbHgP9Zn/lWFTs=
-github.com/richandersonio/go-abuseipdb v0.0.0-20200330031257-224c1fe2557c/go.mod h1:58MM29C/eJ0D+I43Od32VAmJq8bKdZFSnOBXCMC7zUs=
+github.com/richandersonio/go-abuseipdb/v2 v2.0.0-20220612221246-33fa5def777d h1:BI4BM+E1GEmofjekI8LNHlSaT3YDbkAs/TwEnjzv2oA=
+github.com/richandersonio/go-abuseipdb/v2 v2.0.0-20220612221246-33fa5def777d/go.mod h1:VgynyU06BtVHhmUDmVtlvNlpxpuPMFHtAcBGVRFHrrA=

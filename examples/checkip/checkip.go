@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/richandersonio/go-abuseipdb/abuseipdb"
+	"github.com/richandersonio/go-abuseipdb/v2"
 )
 
 func check(ip string) {
