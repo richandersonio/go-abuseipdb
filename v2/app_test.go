@@ -51,6 +51,4 @@ func TestBlackList(t *testing.T) {
 	if len(list) != 1000 {
 		t.Fatalf("Did not return 1000 entries as expected")
 	}
-
-	return
 }

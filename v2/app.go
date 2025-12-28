@@ -3,8 +3,7 @@ package abuseipdb
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
-	"log"
+	"io"
 	"net/http"
 	"strconv"
 	"time"
@@ -26,23 +25,22 @@ type Entry struct {
 	LastReportedAt       time.Time `json:"lastReportedAt,omitempty"`
 }
 
-type abuseipdbReponse struct {
+type abuseipdbResponse struct {
 	Data Entry `json:"data"`
 }
 
-type abuseipdbBlacklistReponse struct {
+type abuseipdbBlacklistResponse struct {
 	Data []Entry `json:"data"`
 }
 
-func crunchResponse(jStr string) (response Entry) {
-	var cont abuseipdbReponse
+func crunchResponse(jStr string) Entry {
+	var cont abuseipdbResponse
 	json.Unmarshal([]byte(jStr), &cont)
 	return cont.Data
 }
 
-// Blacklist retrieves a list of black listed IP addresess
-func Blacklist(apikey string, confidenceMinimum int, limit int) (response []Entry, returnError error) {
-
+// Blacklist retrieves a list of black listed IP addresses
+func Blacklist(apikey string, confidenceMinimum int, limit int) ([]Entry, error) {
 	if confidenceMinimum < 25 {
 		return nil, errors.New("confidenceMinimum must be in the range 25-100")
 	}
@@ -70,26 +68,26 @@ func Blacklist(apikey string, confidenceMinimum int, limit int) (response []Entr
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 
-	page, e := ioutil.ReadAll(resp.Body)
-	resp.Body.Close()
-	if e != nil {
-		log.Fatal(e)
+	page, err := io.ReadAll(resp.Body)
+	if err != nil {
 		return nil, err
 	}
 
-	var cont abuseipdbBlacklistReponse
-	json.Unmarshal([]byte(page), &cont)
+	var cont abuseipdbBlacklistResponse
+	json.Unmarshal(page, &cont)
 
 	return cont.Data, nil
 }
 
 // CheckIP checks an IP address against the AbuseIPDB database
-func CheckIP(apikey string, ipAddress string) (response Entry, returnError error) {
+func CheckIP(apikey string, ipAddress string) (Entry, error) {
 	var emptyEntry Entry
 	if ipAddress == "" {
 		return emptyEntry, errors.New("no ipAddress specified")
 	}
+
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://api.abuseipdb.com/api/v2/check", nil)
 	if err != nil {
@@ -101,7 +99,6 @@ func CheckIP(apikey string, ipAddress string) (response Entry, returnError error
 
 	query := req.URL.Query()
 	query.Add("maxAgeInDays", "90")
-	//query.Add("verbose", "")
 	query.Add("ipAddress", ipAddress)
 	req.URL.RawQuery = query.Encode()
 
@@ -109,15 +106,13 @@ func CheckIP(apikey string, ipAddress string) (response Entry, returnError error
 	if err != nil {
 		return emptyEntry, err
 	}
+	defer resp.Body.Close()
 
-	page, e := ioutil.ReadAll(resp.Body)
-	resp.Body.Close()
-	if e != nil {
-		log.Fatal(e)
+	page, err := io.ReadAll(resp.Body)
+	if err != nil {
 		return emptyEntry, err
 	}
 
-	var ipEntry Entry
-	ipEntry = crunchResponse(string(page))
+	ipEntry := crunchResponse(string(page))
 	return ipEntry, nil
 }
